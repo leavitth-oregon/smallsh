@@ -539,7 +539,7 @@ void parse(char * line, int shellpid)
         }
         else
         {
-            printf(exit_status);
+            printf("%d\n", exit_status);
             fflush(stdout);
         }
         
