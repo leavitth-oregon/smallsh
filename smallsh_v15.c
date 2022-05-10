@@ -421,11 +421,6 @@ void foreground_process(char ** arguments, int argc) // - - - - - - - - - - - - 
             fflush(stdin);
             fflush(stdout);
 
-            /* default SIGINT action */
-            struct sigaction SIGINT_action = {0};
-            SIGINT_action.sa_handler = SIG_DFL;
-            sigaction(SIGINT, &SIGINT_action, NULL);
-
             /* Check for input and output redirection, and handle it with calls. */
             for (i = 0; i < argc; i++)
             {
