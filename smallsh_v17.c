@@ -116,7 +116,6 @@ void exit_process()
     int i = 0;
     while(kill(bchildren[i], SIGTERM) != -1)
     {
-        write(1, "Killing child\n", 14);
         kill(bchildren[i], SIGTERM);
         i++;
     }
@@ -693,4 +692,6 @@ int main()
     command_loop();
     exit(exit_status);
 }
+
+
 
