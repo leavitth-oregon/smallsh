@@ -354,9 +354,8 @@ void foreground_process(char ** arguments, int argc) // - - - - - - - - - - - - 
 {
     /* local variables */
     int wstatus;  // child exit status
-    int child_signal;       // signal that may kill the child
-    int i = 0;
-    int w = 0;
+    int i = 0;    // iterator
+    int w = 0;    // value of waitpid, for parent processing
 
     char * command = arguments[0];
 
@@ -424,7 +423,6 @@ void foreground_process(char ** arguments, int argc) // - - - - - - - - - - - - 
                 /* Else, if the process was terminated, write the signal that killed the child to our status buffer */
                 else if (WIFSIGNALED(wstatus))
                 {
-                    child_signal = WTERMSIG(wstatus);
                     printf("killed by signal %d\n", WTERMSIG(wstatus));
                     fflush(stdout);
                 }
@@ -432,7 +430,6 @@ void foreground_process(char ** arguments, int argc) // - - - - - - - - - - - - 
                 /* Else, if the process was stopped, write the stop signal */
                 else if (WIFSTOPPED(wstatus)) 
                 {
-                    child_signal = WTERMSIG(wstatus);
                     printf("stopped by signal %d\n", WSTOPSIG(wstatus));
                     fflush(stdout);
                 } 
